@@ -135,10 +135,3 @@ To run the PostgreSQL database using Docker:
 | `JWT_SECRET`   | Secret key for JWT authentication    | `None`              |
 | `PORT`         | Port on which the app will run       | `3000`              |
 
-## License
-
-This project is licensed under the **UNLICENSED** license.
-
-## Contact
-
-For any questions or feedback, please contact the project maintainer.
