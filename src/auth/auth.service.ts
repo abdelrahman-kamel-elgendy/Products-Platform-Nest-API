@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
-import * as bcrypt from 'bcrypt';
+import * as argon from 'argon2';
 import { BadRequestException } from '../error/bad-request';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class AuthService {
     if (!user)
       throw new BadRequestException('Invalid credentials');
   
-    if (!await bcrypt.compare(pass, user.password))
+    if (!await argon.verify(user.password, pass))
       throw new BadRequestException('Invalid credentials');
 
     const { password, ...result } = user;
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   async register(registerDto: any) {
-    const hashedPassword = await bcrypt.hash(registerDto.password, 10);
+    const hashedPassword = await argon.hash(registerDto.password);
     return this.userService.create({
       ...registerDto,
       password: hashedPassword,
