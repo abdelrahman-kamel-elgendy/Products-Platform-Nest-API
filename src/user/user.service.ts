@@ -4,7 +4,6 @@ import { BaseService } from '../base/baseService';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
-import * as argon from 'argon2';
 
 @Injectable()
 export class UserService extends BaseService<User, CreateUserDTO, UpdateUserDTO> {
@@ -13,11 +12,11 @@ export class UserService extends BaseService<User, CreateUserDTO, UpdateUserDTO>
     }
 
     async create(dto: CreateUserDTO): Promise<User> {
-        const hashedPassword = await argon.hash(dto.password);
+        
         return this.prisma.user.create({
             data: {
                 ...dto,
-                password: hashedPassword,
+                password: dto.password,
                 role: dto.role ? dto.role as Role : 'user',
             },
         });
