@@ -1,8 +1,9 @@
+docker-compose.yml
+
 # compiled output
 /dist
 /node_modules
 /build
-/test
 
 # Logs
 logs
@@ -17,6 +18,7 @@ lerna-debug.log*
 .DS_Store
 
 # Tests
+/test
 /coverage
 /.nyc_output
 
@@ -39,6 +41,7 @@ lerna-debug.log*
 # dotenv environment variable files
 .env
 .env.development.local
+.env.test
 .env.test.local
 .env.production.local
 .env.local
