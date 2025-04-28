@@ -1,11 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Role, User } from 'node_modules/.prisma/client';
-import { BaseService } from 'src/base/baseService';
+import { BaseService } from '../base/baseService';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import * as argon from 'argon2';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class UserService extends BaseService<User, CreateUserDTO, UpdateUserDTO> {

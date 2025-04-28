@@ -1,10 +1,10 @@
 import { Controller, UseGuards } from '@nestjs/common';
-import { BaseController } from 'src/base/base.controller'; 
+import { BaseController } from '../base/base.controller'; 
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { updateCategoryDto } from './dto/update-category.dto';
-import { Category } from 'node_modules/.prisma/client';
+import { Category } from '../../node_modules/.prisma/client';
 import { CategoryService } from './category.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard)
 @Controller('category')

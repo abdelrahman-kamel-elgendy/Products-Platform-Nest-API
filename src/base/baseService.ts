@@ -1,6 +1,6 @@
 // src/base/base.service.ts
 import { Injectable } from '@nestjs/common';
-import { NotFoundException } from 'src/error/bad-request';
+import { NotFoundException } from '../error/bad-request';
 
 @Injectable()
 export abstract class BaseService<T, CreateDTO, UpdateDTO> {

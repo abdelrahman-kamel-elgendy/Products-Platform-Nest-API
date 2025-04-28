@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseFilters } from "@nestjs/common";
 import { BaseService } from "./baseService";
-import { HttpExceptionFilter } from "src/error/http-exception";
+import { HttpExceptionFilter } from "../error/http-exception";
 
 @UseFilters(HttpExceptionFilter)
 export class BaseController<T, CreateDTO, UpdateDTO> {
