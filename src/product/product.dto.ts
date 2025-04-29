@@ -16,3 +16,16 @@ export class CreateProductDTO {
     @IsString()
     categoryName: string;
 }
+
+export class UpdateProductDTO {
+    @IsString()
+    name?: string;
+
+    @IsString()
+    description?: string;
+
+    price?: number;
+    
+    @IsString()
+    categoryname?: string;
+}

@@ -22,3 +22,21 @@ export class CreateUserDTO {
     @IsString({ message: 'Role must be a string' })
     role?: string;
 }
+
+export class UpdateUserDTO {
+    @IsString()
+    name?: string;
+
+    @IsString()
+    @IsEmail()
+    email?: string;
+
+    @IsString()
+    password?: string;
+
+    @IsString()
+    role?: string;
+
+    @IsString()
+    IsActive?: string;
+}

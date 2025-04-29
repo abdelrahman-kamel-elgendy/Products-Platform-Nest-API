@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Product } from '../../node_modules/.prisma/client'; 
 import { BaseService } from '../base/baseService';
-import { CreateProductDTO } from './dto/create-product.dto';
-import { UpdateProductDTO } from './dto/update-product.dto';
-import { PrismaService } from '../prisma/prisma.service';
+import * as productDto from "./product.dto";
+import { ProductRepository } from './category.repository';
 
 @Injectable()
-export class ProductService extends BaseService<Product, CreateProductDTO, UpdateProductDTO> {
-    constructor(private prisma: PrismaService) {
-        super(prisma.product);
+export class ProductService extends BaseService<Product, productDto.CreateProductDTO, productDto.UpdateProductDTO> {
+    constructor(protected productRrepository: ProductRepository) {
+        super(productRrepository);
     }
 }

@@ -1,34 +1,26 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Role, User } from 'node_modules/.prisma/client';
 import { BaseService } from '../base/baseService';
-import { CreateUserDTO } from './dto/create-user.dto';
-import { UpdateUserDTO } from './dto/update-user.dto';
-import { PrismaService } from '../prisma/prisma.service';
+import {CreateUserDTO, UpdateUserDTO} from './user.dto';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService extends BaseService<User, CreateUserDTO, UpdateUserDTO> {
-    constructor(private prisma: PrismaService) {
-        super(prisma.user);
+    constructor(private userRepository: UserRepository) {
+        super(userRepository);
     }
 
     async create(dto: CreateUserDTO): Promise<User> {
         
-        return this.prisma.user.create({
-            data: {
+        const user = {
                 ...dto,
                 password: dto.password,
                 role: dto.role ? dto.role as Role : 'user',
-            },
-        });
+        }
+        return this.userRepository.create(user);
     }
 
     async findByEmail(email: string): Promise<User> {
-        const user = await this.prisma.user.findUnique({ where: { email } });
-
-        if (!user) 
-            throw new NotFoundException('User not found');
-        
-
-        return user;
+        return await this.userRepository.findByEmail(email);
     }
 }

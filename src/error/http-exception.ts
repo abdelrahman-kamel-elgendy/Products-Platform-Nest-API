@@ -7,7 +7,6 @@ import {
     HttpStatus,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { PrismaClientKnownRequestError } from '../../node_modules/.prisma/client/runtime/library';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -28,10 +27,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
             error = exception.name;
         } 
         
-        if (exception instanceof PrismaClientKnownRequestError && exception.code === 'P2002') {
+        if ((exception as any)?.code === 'P2002') {
             status = HttpStatus.CONFLICT;
             message = 'Record already exists';
-            error = exception.name;
+            error = (exception as any)?.name;
         } 
         
         else if (exception instanceof Error) {
