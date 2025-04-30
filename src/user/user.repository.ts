@@ -1,13 +1,13 @@
 // user.repository.ts
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { BaseRepository } from 'src/base/base.repository';
-import * as UserDto from './user.dto';
+import { BaseRepository } from '../base/base.repository';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotFoundException } from '../error/bad-request';
+import { CreateUserDto, UpdateUserDto } from './user.dto';
 
 @Injectable() // Make sure this is present
-export class UserRepository extends BaseRepository<User, UserDto.CreateUserDTO, UserDto.UpdateUserDTO> {
+export class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
   constructor(private prisma: PrismaService) {
     super(prisma.user);
   }

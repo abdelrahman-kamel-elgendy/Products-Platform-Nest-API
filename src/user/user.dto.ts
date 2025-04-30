@@ -1,7 +1,7 @@
 import { isEmail, IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 
-export class CreateUserDTO {
+export class CreateUserDto {
     @IsString({ message: 'Email must be a string' })
     @IsEmail()  
     @IsNotEmpty({ message: 'Email is required' })  
@@ -23,7 +23,7 @@ export class CreateUserDTO {
     role?: string;
 }
 
-export class UpdateUserDTO {
+export class UpdateUserDto {
     @IsString()
     name?: string;
 
@@ -32,11 +32,8 @@ export class UpdateUserDTO {
     email?: string;
 
     @IsString()
-    password?: string;
-
-    @IsString()
     role?: string;
 
     @IsString()
-    IsActive?: string;
+    isActive?: boolean;
 }
