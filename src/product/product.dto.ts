@@ -14,7 +14,7 @@ export class CreateProductDTO {
 
     @IsNotEmpty()
     @IsString()
-    categoryName: string;
+    categoryId: string;
 }
 
 export class UpdateProductDTO {
@@ -26,6 +26,5 @@ export class UpdateProductDTO {
 
     price?: number;
     
-    @IsString()
-    categoryname?: string;
+    categoryId?: String;
 }

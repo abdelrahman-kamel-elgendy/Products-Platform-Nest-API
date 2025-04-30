@@ -9,7 +9,7 @@ export class CreateCategoryDto {
   description: string;
 }
 
-export class updateCategoryDto {
+export class UpdateCategoryDto {
   @IsString({ message: 'Name must be a string.' })
   @IsNotEmpty({ message: 'Name is required and cannot be empty.' })
   name: string;

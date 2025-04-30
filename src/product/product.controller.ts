@@ -1,13 +1,13 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { BaseController } from '../base/base.controller';
-import * as productDto from "./product.dto";
-import { Product } from '../../node_modules/.prisma/client';
 import { ProductService } from './product.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { Product } from '@prisma/client';
+import { CreateProductDTO, UpdateProductDTO } from './product.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('product')
-export class ProductController extends BaseController<Product, productDto.CreateProductDTO, productDto.UpdateProductDTO> {
+export class ProductController extends BaseController<Product, CreateProductDTO, UpdateProductDTO> {
     constructor(private productService: ProductService) {
         super(productService);
     }

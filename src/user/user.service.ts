@@ -10,16 +10,6 @@ export class UserService extends BaseService<User, CreateUserDTO, UpdateUserDTO>
         super(userRepository);
     }
 
-    async create(dto: CreateUserDTO): Promise<User> {
-        
-        const user = {
-                ...dto,
-                password: dto.password,
-                role: dto.role ? dto.role as Role : 'user',
-        }
-        return this.userRepository.create(user);
-    }
-
     async findByEmail(email: string): Promise<User> {
         return await this.userRepository.findByEmail(email);
     }

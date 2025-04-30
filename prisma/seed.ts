@@ -6,7 +6,7 @@ dotenv.config();
 const prisma = new PrismaClient();
 
 async function createAdminUser() {
-  const adminEmail = process.env.DB_ADMIN_PASSWORD!.trim().toLowerCase();
+  const adminEmail = process.env.DB_ADMIN_EMAIL!.trim().toLowerCase();
   const rawPassword = process.env.DB_ADMIN_PASSWORD!;
 
   const adminPassword = await argon.hash(rawPassword);

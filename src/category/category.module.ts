@@ -7,6 +7,7 @@ import { CategoryRepository } from './category.reository';
 @Module({
   imports: [PrismaModule], // This provides PrismaService
   controllers: [CategoryController],
-  providers: [CategoryService, CategoryRepository]
+  providers: [CategoryService, CategoryRepository],
+  exports: [CategoryRepository]
 })
 export class CategoryModule {}
