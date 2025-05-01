@@ -35,7 +35,8 @@ describe('CategoryController', () => {
                 createdAt: Date.now(),
                 updatedAt: Date.now(),
                 ...dto
-            }}),
+            }
+        }),
         findAll: jest.fn(() => [mockCategory]),
         findAllActive: jest.fn(() => [mockCategory]),
         findById: jest.fn((id: string) => id === testCategoryId ? mockCategory : null),
@@ -109,9 +110,9 @@ describe('CategoryController', () => {
         });
     });
 
-    describe('findById', () => {  
+    describe('findById', () => {
         it('should return a single category', async () => {
-            const result = await controller.findById(testCategoryId);  
+            const result = await controller.findById(testCategoryId);
 
             expect(result).toEqual({
                 id: testCategoryId,
@@ -144,10 +145,10 @@ describe('CategoryController', () => {
         });
     });
 
-    describe('delete', () => {  
+    describe('delete', () => {
         it('should delete a category', async () => {
-            await controller.delete(testCategoryId);  
-            expect(mockCategoryService.delete).toHaveBeenCalledWith(testCategoryId); 
+            await controller.delete(testCategoryId);
+            expect(mockCategoryService.delete).toHaveBeenCalledWith(testCategoryId);
         });
     });
 });

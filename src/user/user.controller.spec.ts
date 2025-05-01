@@ -42,25 +42,12 @@ describe('UserController', () => {
                 email: dto.email,
                 name: dto.name,
                 role: dto.role,
-                // Exclude password fields from the response
-            }}),
-        findAll: jest.fn(() => [{
-            ...mockUser,
-            password: undefined // Exclude password from response
-        }]),
-        findAllActive: jest.fn(() => [{
-            ...mockUser,
-            password: undefined // Exclude password from response
-        }]),
-        findById: jest.fn((id: string) => id === testUserId ? {
-            ...mockUser,
-            password: undefined // Exclude password from response
-        } : null),
-        update: jest.fn((id: string, dto: UpdateUserDto) => id === testUserId ? { 
-            ...mockUser,
-            ...dto,
-            password: undefined // Exclude password from response
-        } : null),
+            }
+        }),
+        findAll: jest.fn(() => [{ ...mockUser, password: undefined }]),
+        findAllActive: jest.fn(() => [{ ...mockUser, password: undefined }]),
+        findById: jest.fn((id: string) => id === testUserId ? { ...mockUser, password: undefined } : null),
+        update: jest.fn((id: string, dto: UpdateUserDto) => id === testUserId ? { ...mockUser, ...dto, password: undefined } : null),
         delete: jest.fn((id: string) => id === testUserId ? true : false),
     };
 
@@ -136,9 +123,9 @@ describe('UserController', () => {
         });
     });
 
-    describe('findById', () => {  
+    describe('findById', () => {
         it('should return a single user', async () => {
-            const result = await controller.findById(testUserId);  
+            const result = await controller.findById(testUserId);
 
             expect(result).toEqual({
                 id: testUserId,
@@ -173,10 +160,10 @@ describe('UserController', () => {
         });
     });
 
-    describe('delete', () => {  
+    describe('delete', () => {
         it('should delete a user', async () => {
-            await controller.delete(testUserId);  
-            expect(mockUserService.delete).toHaveBeenCalledWith(testUserId); 
+            await controller.delete(testUserId);
+            expect(mockUserService.delete).toHaveBeenCalledWith(testUserId);
         });
     });
 });
